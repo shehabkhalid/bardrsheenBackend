@@ -1,0 +1,59 @@
+type User {
+  _id: ID!
+  name: String
+  password: String
+  role: String
+  token: String
+}
+
+input UserInput {
+  name: String!
+  password: String!
+  role:String!  
+}
+
+type Patient {
+
+  _id:ID
+  name:String
+  barcode:Int
+  nationality:String
+  socialStatus:String
+  job:String
+  yearOfBirth:Int
+  phone:String
+  gender:String
+  address:String
+  insurance:String
+
+}
+
+input PatientInput {
+
+
+  _id:ID
+  name:String
+  barcode:Int
+  nationality:String
+  socialStatus:String
+  job:String
+  yearOfBirth:Int
+  phone:String
+  gender:String
+  address:String
+  insurance:String
+
+}
+
+type Query {
+  users: [User]
+  login(userName:String,password:String):User
+  patient(id:ID):Patient
+}
+
+type Mutation {
+  addUser(input: UserInput): User
+  addPatient(input: PatientInput):Patient
+  updatePatient(input:PatientInput ):Patient
+  deletePatient(_id:ID):Boolean
+}
