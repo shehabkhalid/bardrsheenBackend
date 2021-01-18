@@ -16,7 +16,7 @@ type Patient {
 
   _id:ID
   name:String
-  barcode:Int
+  barcode:String
   nationality:String
   socialStatus:String
   job:String
@@ -33,7 +33,7 @@ input PatientInput {
 
   _id:ID
   name:String
-  barcode:Int
+  barcode:String
   nationality:String
   socialStatus:String
   job:String
@@ -49,6 +49,7 @@ type Query {
   users: [User]
   login(userName:String,password:String):User
   patient(id:ID):Patient
+  search(searchInput: String ):[Patient]
 }
 
 type Mutation {
@@ -57,3 +58,4 @@ type Mutation {
   updatePatient(input:PatientInput ):Patient
   deletePatient(_id:ID):Boolean
 }
+

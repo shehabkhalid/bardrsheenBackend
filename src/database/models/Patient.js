@@ -5,8 +5,8 @@ const patientSchema = new mongoose.Schema({
 
 
     barcode: {
-        type: Number,
-        default: -1,
+        type: String,
+        default: "-1",
         unique: true
 
     },
@@ -77,7 +77,29 @@ patientSchema.pre('save', async function (next)
 
 })
 
+patientSchema.post('save', async function ()
+{
+
+    const patient  =  this;
+    patient.yearOfBirth =  new Date().getFullYear() -  patient.yearOfBirth
+  
+
+})
+
 patientSchema.pre('find', async function(next){
+
+    const patient =  this
+
+    patient.yearOfBirth =  new Date().getFullYear() -  patient.yearOfBirth
+
+
+    next()
+
+    
+
+})
+
+patientSchema.pre('findById', async function(next){
 
     const patient =  this
 
